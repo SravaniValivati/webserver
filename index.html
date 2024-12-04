@@ -53,18 +53,6 @@
       font-weight: bold;
     }
 
-    @media (max-width: 600px) {
-      .data-box {
-        padding: 15px;
-      }
-      .data-title {
-        font-size: 1.3em;
-      }
-      .data-content {
-        font-size: 1em;
-      }
-    }
-
     .logo-container {
       position: absolute;
       top: 0;
@@ -111,8 +99,8 @@
 <body>
 
 <div class="logo-container">
-  <img src="https://github.com/SravaniValivati/webserver/blob/main/bu.png" alt="Binghamton University Logo" class="logo">
-  <img src="binghamton-university.png" alt="Binghamton University Logo" class="logo1">
+  <img src="https://raw.githubusercontent.com/SravaniValivati/webserver/main/bu.png" alt="Binghamton University Logo" class="logo">
+  <img src="https://raw.githubusercontent.com/SravaniValivati/webserver/main/binghamton-university.png" alt="Binghamton University Logo" class="logo1">
 </div>
 
 <div class="header">
@@ -129,7 +117,6 @@
     </div>
   </div>
 </div>
-
 
 <script>
   window.onload = function() {
@@ -157,6 +144,8 @@
       snowflake.style.setProperty('--random-rotate', randomRotate + 'deg');
 
       document.body.appendChild(snowflake);
+
+      setTimeout(() => snowflake.remove(), 5000); // Remove snowflake after 5 seconds
     };
 
     setInterval(createSnowflake, 100);
@@ -175,7 +164,7 @@
 
       const tree = document.createElement("img");
       tree.classList.add('tree');
-      tree.src = "tree.png";
+      tree.src = "https://raw.githubusercontent.com/SravaniValivati/webserver/main/tree.png"; // Update with actual path
       tree.style.left = newPosition + "px";
       tree.style.bottom = "-55px";
       tree.style.height = Math.random() * 100 + 250 + "px";
