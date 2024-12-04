@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snowy Winter Scene</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(to bottom, black, #60759c); 
+      position: relative;
+    }
+
+    .logo-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+      background-color: #004333;
+      width: 100%;
+    }
+
+    .logo {
+      width: 100px;
+    }
+
+    .logo1 {
+      width: 350px;
+    }
+
+    .snowflake {
+      position: absolute;
+      color: #ebfff3;
+      font-size: 1em;
+      animation: fall linear forwards;
+      z-index: 50;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px);
+      }
+      100% {
+        transform: translate(var(--random-x), var(--random-y)) rotate(var(--random-rotate));
+      }
+    }
+
+    .tree {
+      position: absolute;
+      z-index: 1;
+      width: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="logo-container">
+  <img src="bu.png" alt="Binghamton University Logo" class="logo">
+  <img src="binghamton-university.png" alt="Binghamton University Logo" class="logo1">
+</div>
+
+<script>
+  window.onload = function() {
+    startSnowfall();
+    addTrees();
+  };
+
+  function startSnowfall() {
+    const createSnowflake = () => {
+      const snowflake = document.createElement("div");
+      snowflake.classList.add("snowflake");
+      snowflake.textContent = "\u2744"; // Snowflake emoji
+
+      // Randomize the position, speed, size, and direction
+      const leftPosition = Math.random() * window.innerWidth + "px";
+      const randomX = Math.random() * 300 - 150; // Random horizontal movement
+      const randomY = Math.random() * 300 + 550; // Random vertical movement (falling speed)
+      const randomRotate = Math.random() * 360; // Random rotation angle
+
+      snowflake.style.left = leftPosition;
+      snowflake.style.top = "-50px";
+      snowflake.style.animationDuration = Math.random() * 3 + 2 + "s"; // Random duration between 2s to 5s
+      snowflake.style.fontSize = Math.random() * 10 + 1 + "px"; // Random font size
+      snowflake.style.animationName = "fall"; // Apply fall animation
+
+      // Set custom properties for the animation
+      snowflake.style.setProperty('--random-x', randomX + 'px');
+      snowflake.style.setProperty('--random-y', randomY + 'px');
+      snowflake.style.setProperty('--random-rotate', randomRotate + 'deg');
+
+      document.body.appendChild(snowflake);
+
+      // Remove snowflake after animation ends
+      //setTimeout(() => snowflake.remove(), 5000);
+    };
+
+    setInterval(createSnowflake, 100); // Create snowflakes every 100ms
+  }
+
+  function addTrees() {
+    const numberOfTrees = 6;
+    let lastPosition = -250;
+
+    for (let i = 0; i < numberOfTrees; i++) {
+      const gap = Math.random() * (250 - 150) + 150;
+      const newPosition = lastPosition + gap;
+      lastPosition = newPosition;
+
+      if (newPosition > window.innerWidth - 100) break;
+
+      const tree = document.createElement("img");
+      tree.classList.add('tree');
+      tree.src = "tree.png";
+      tree.style.left = newPosition + "px";
+      tree.style.bottom = "-55px";
+      tree.style.height = Math.random() * 100 + 250 + "px";
+      tree.style.zIndex = Math.floor(Math.random() * 5) + 1;
+
+      document.body.appendChild(tree);
+    }
+  }
+</script>
+
+</body>
+</html>
