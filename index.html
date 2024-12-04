@@ -130,21 +130,6 @@
   </div>
 </div>
 
-<script>
-  function fetchData() {
-    fetch('/data')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('temp').innerText = data.temperature;
-        document.getElementById('hum').innerText = data.humidity;
-        document.getElementById('pres').innerText = data.pressure;
-      })
-      .catch(error => console.error('Error fetching data:', error));
-  }
-
-  setInterval(fetchData, 3000);
-  fetchData();
-</script>
 
 <script>
   window.onload = function() {
